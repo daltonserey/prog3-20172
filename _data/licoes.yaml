@@ -1,0 +1,14 @@
+1: 
+   titulo: Apresentação
+   slides: slides/00.apresentacao
+   post: apresentacao
+
+2: 
+   titulo: Brevíssimo Histórico de JavaScript
+   slides: slides/01.historico
+   post: historico
+
+3: 
+   titulo: Tipos de Dados JavaScript
+   slides: slides/02.tipos_de_dados
+   post: tipos_de_dados
