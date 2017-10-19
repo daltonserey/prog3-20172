@@ -1,6 +1,6 @@
 ---
 ---
-# Programação 3, Computação / UFCG, 2017.2
+# Programação 3 / Computação / UFCG, 2017.2
 
 > Professor: [Dalton Serey](http://daltonserey..github.io)<br>
 > Sala: CAA304 (ou CAA203)<br>
