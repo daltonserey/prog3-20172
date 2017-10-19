@@ -1,8 +1,4 @@
 .fork {
-    color: red;
-}
-
-#header {
-    background-color: yellow;
     display: none;
+    color: red;
 }
