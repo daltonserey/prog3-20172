@@ -1,0 +1,9 @@
+markdown: kramdown
+theme: jekyll-theme-minimal
+title: Programação 3, 2017.2
+description: |
+    Site da disciplina de Programação 3 do Curso
+    de Ciência da Computação da UFCG, período 2017.2
+
+plugins:
+  - jemoji
