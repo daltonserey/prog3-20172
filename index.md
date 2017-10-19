@@ -1,5 +1,6 @@
 ---
 ---
+@import "{{ site.theme }}";
 # Programação 3, Computação / UFCG, 2017.2
 
 > Professor: [Dalton Serey](http://daltonserey..github.io)<br>
