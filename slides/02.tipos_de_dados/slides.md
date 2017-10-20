@@ -32,7 +32,7 @@ Niklaus Wirth, 1976
    - o programa dá runtime error (verificação dinâmica)
 
 ---
-# sistema de tipos para **não programadores**
+# o TS de JS é para **não programadores**
 
 - em Java, Python, etc
 
@@ -44,14 +44,14 @@ Niklaus Wirth, 1976
 
    - além disso, as operações minimizam casos de erro
 
-- coerções em JavaScript é ao mesmo tempo
+- coerções em JavaScript são ao mesmo tempo
 
    - uma poderosa _feature_ que facilita a codificação
 
-   - mas é uma das maiores causas de frustração
+   - e uma das maiores causas de frustração
 
 ---
-# dois tipos de tipos: primitivos e objetos
+# dois “tipos de tipos”: primitivos e objetos
 
 <img src="./js_data_types.jpg" style="width:100%;">
 <small>ES6 inclui ainda _Symbol_ (tipo primitivo)</small>
@@ -117,178 +117,153 @@ Niklaus Wirth, 1976
 
    - este é um dos grandes problemas com coerção
 
-- valores _falsy_ e _truthy_ (outra fonte de probelmas)
+- valores _falsy_ e _truthy_ — enorme fonte de problemas 👀
 
-   - valores não-boolean promovidos por coerção
+   - _falsy_: `false`, `null`, `undefined`, `+0`, `-0`, `NaN` e `""` 😠
 
-   - _falsy_: null, undefined, false, +0, -0, NaN e ""
+   - _truthy_: qualquer valor que não seja _falsy_
 
-   - _truthy_: qualquer coisa que não seja falsy
+- atentar pra (excelente) semântica de `||` e `&&`
 
-- operadores `||` e `&&` (estilo python, não Java ou C++ ou C)
+   - ao estilo de python e bash, não de Java, C ou C++ ou C
 
    - melhor compreendidos como *seletores*
+
+      - `&&` pode ser usado como uma guarda
+      - `||` pode ser pensado como seletor de default
 
 ---
 # null e undefined
 
-- dois _não valores_: `null` e `undefined`
+- JS tem dois “_não valores_”: `null` e `undefined`
 
-- cada um corresponde a um tipo e seu único valor
+- cada um pertence a seu próprio tipo e é seu único valor
 
    - detalhe: `null` é palavra reservada, mas `undefined` não!
 
-- não confundir `undefined` com undeclared!
+- não confundir `undefined` com _undeclared_!
 
 - referenciar variável inexistente/não declarada é Erro! `ReferenceError` 
 
-   - problema aqui: a mensagem de JS é `x is not defined` e dá a
-     impressão de que é o mesmo que dizer que x é undefined...
-     mas não é! o ideal seria que fosse `x is not declared` ou
-     algo do tipo... menos confusão => melhor compreensão
+???
 
-   - quer ver piorar? use `typeof x` no caso acima; o resultado
-     será `undefined`, mesmo que x esteja não declarada!!! isso
-     só aumenta a confusão; veja que se você declarar uma
-     variável e não a atribuir, aí sim, o resultado é undefined
-     corretamente; :-(
+O problema aqui é que a mensagem de JS é `x is not defined` e dá
+a impressão de que é o mesmo que dizer que x é undefined...  mas
+não é! o ideal seria que fosse `x is not declared` ou algo do
+tipo... menos confusão => melhor compreensão.
 
-   - contudo, `typeof x` funcionar mesmo com `x` não declarado é 
-     desejável e útil; principalmente, em um ambiente em que
-     vários scripts compartilham um escopo global; isso muda um
-     pouco de figura com ES6... e módulos;
+Ainda pode piorar. Use `typeof x` no caso acima; o resultado será
+`undefined`, mesmo que x esteja não declarada!!! isso só aumenta
+a confusão; veja que se você declarar uma variável e não a
+atribuir, aí sim, o resultado é `undefined` corretamente. :-(
 
-- NaN
-
-   - NaN é uma realidade na programação JS
-
-   - NaN é um number !?
-
-   - como é o resultado de algumas operações, é comum precisar
-     testar se o resultado é NaN...
-
-     - infelizmente, `r == NaN` ou mesmo `r === NaN` não
-       funcionam!!!
-
-     - porque na verdade, `NaN == NaN` e `NaN === NaN` são ambos
-       falsos!!! O NaN é o **único valor** em JavaScript que não é
-       igual a si próprio!
-
-     - então, como testar se o resultado é NaN? que tal a função
-       global `isNaN()`? Não funciona... tem um bug histórico!
-       Ela foi feita por alguém que levou ao pé da letra o nome
-       da função e do acrônimo NaN e verifica apenas se o
-       argumento passado não é um número válido... logo, retorna
-       `true` mesmo quando o valor não é NaN, mas o valor não é
-       um número; assim, isNaN("teste") é true, mesmo sem que a
-       string seja um NaN...
-
-     - e o que fazer? felizmente, em ES6 foi feita uma versão
-       correta da função e colocada em `Number.isNaN()`; essa é
-       confiável; você também pode fazer a sua (um polyfill)
-       baseado em `typeof n == "number" && window.isNaN(n)` ou
-       aproveitar a peculiaridade exclusiva do valor NaN e
-       escrever `return n !== n`.
-
-     - aqueles de vocês que já programam e usaram isNaN em algum
-       lugar de seus projetos, corram pra corrigir esses bugs...
-       ainda que não tenham se manifestado, são bugs!
-
-# zeros
-
-- `+0` e `-0`
-
+Contudo, `typeof x` funcionar mesmo com `x` não declarado é
+desejável e útil; principalmente, em um ambiente em que vários
+scripts compartilham um escopo global; isso muda um pouco de
+figura com ES6... e módulos.
 
 ---
-# o operador `typeof`
+# object
 
-- o operador faz inspeção do tipo do valor
+- em JS, qualquer valor que não seja um primitivo é um objeto
 
-- retorna o nome (string) de um dos tipos existentes:
+- objetos são **coleções de propriedades**
 
-   - `number`
-   - `string`
-   - `booolean`
-   - `undefined`
-   - `symbol`
-   - `object`
-   - `function` (?!)
-   - mas não `null`... por bug, `typeof null === 'object'` :-D
+- cada propriedade consiste em um _nome_ e um _valor_
 
-- ao ser aplicado a uma variável, o valor é que é inspecionado
+   - cada _nome_ é uma _string_
 
-colocar só depois de passarmos por Objects
+   - e cada _valor_ é qualquer valor, incluindo objetos
+
+- objetos podem ser ligados a outros por **herança prototipal**
+
+   - pode ser melhor entendida como _delegação_
+
+- diferente de outras LPs, JS tem **literais pra objetos**
+
+- todos os objetos têm um único tipo: `object`
+
 ---
-# natives
----
-# conversões de tipos: _casting_ e _coercion_
+# exemplo de literal de um objeto simples
 
-- casting não é mencionado na spec, mas existe
-
-- coerção é uma _feature_, não um _bug_
-
-- coerção é conversão implícita de tipos
-
-   - quando é explícita é chamada de casting
-
-   - em LPs estáticas é tipicamente feita em tempo de compilação
-
-- em JS, há coerção em todo lugar!
-
-   - expressões condicionais de modo geral
-   - condições no if, no for, no while e no do..while
-   - indexação de arrays
-   - concatenação
-   - expressões ternárias
-
-- difícil e polêmica, mas vetor de concisão, elegância e legibilidade
-
-   - a coerção tenta capturar a flexibilidade da linguagem humana
-
-- coerção é a criação de um novo valor, de um outro tipo, para
-  substituir outro, para permitir certa operação
-
-- 3 + '4'
-
-- 3 * '4'
-
-- 3 * '4' + '2'
-
-- 3 + '4' * '2'
-
-- (3 + '4') * '2'
-
-- problemas
-
-  ```
-  > a = "100"
-  > b = "20"
-  > a / b
-
-  ```
----
-# curiosidades
-
-NaN é o único valor que não é igual a ele mesmo.
-
-```
-NaN !== NaN
-typeof NaN === 'number'
+```javascript
+const jackson = {
+   nome: 'josé gomes filho',
+   nascimento: {
+      dia: 31,
+      mes: 7,
+      ano: 1919
+   }
+}
 ```
 
-Logo, você não pode testar se um resultado é NaN com o operador
-de igualdade. Pra isso, use `isNaN()`
+---
+# objetos nativos (ou _built-in_)
 
-```
-isNaN(0/0) === true
-```
+- pra cada tipo primitivo, um objeto associado
 
-Curiosamente, `isNaN("abc") === true`. Isso ocorre, porque
-JavaScript faz coerção ao fazer o teste. Felizmente, em ES6 foi
-adicionada uma nova função de teste a `Number`. Assim,
-`Number.isNaN("abc") === false`.
+   - `number` ⇔  `Number`
+   - `string` ⇔  `String`
+   - `boolean` ⇔  `Boolean`
+
+- os objetos acima podem ser usados como:
+
+   - funções de casting
+   - ou como _construtores_
+
+- dois outros objetos nativos merecem destaque
+
+   - **`Array`**: objeto que “simula” arrays e listas
+   - **`Function`**: objeto especial que pode ser “executado”
+   - tão importantes que têm léxico, sintaxe e semântica próprias
 
 ---
-# leituras
+# exemplo de literal de um outro objeto
 
-- https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures
+```javascript
+const jackson = {
+   nome: 'josé gomes filho',
+   nascimento: {
+      dia: 31,
+      mes: 7,
+      ano: 1919
+   },
+   instrumentos: ['pandeiro', 'bateria', 'voz'],
+   prim_nome: function () {
+      return this.nome.split(' ')[0];
+   }
+}
+```
+
+Atente também, para os literais de _Array_ e _Function_.
+
+**Quem precisa de classes e de `new` com literais pra
+objetos?!**
+---
+# `Array`
+
+- em aparência, semelhantes a listas em python
+
+   - também lembram ArrayLists em Java
+   - internamente, contudo, são bem diferentes
+
+- arrays JS são objetos simples com...
+
+   - sintaxe própria (similar à de python)
+   - índices e valores simulados via properties
+   - `typeof` resulta em `object`
+
+```javascript
+const a = ['a', 'b', 'c'];
+console.log(Object.keys(a)); // ["0", "1", "2"]
+
+delete a[1];
+console.log(a); // ["a", empty × 1, "c"]
+
+a.length = 2000;
+console.log(a); // ["a", empty × 1, "c", empty × 1997]
+```
+
+---
+# `Function`
+
