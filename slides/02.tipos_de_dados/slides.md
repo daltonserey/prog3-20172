@@ -80,10 +80,12 @@ Niklaus Wirth, 1976
    - `-0`
    - `Number.EPSILON` (igual a 2<sup>-52</sup>; novo em ES6)
 
-- via autoboxing, têm acesso à API de Number
+- acesso à API de Number via autoboxing (`toFixed()`, etc)
 
 ---
 # string
+
+- sequência imutável de caracteres (utf-16)
 
 - literais com aspas simples e duplas: `'ok'` e `"ok"`
 
@@ -108,8 +110,6 @@ Niklaus Wirth, 1976
 
 - acesso à API de String (via autoboxing)
 
-   - [JavaScript String Reference](https://www.w3schools.com/jsref/jsref_obj_string.asp)
-   - [JavaScript String Methods](https://www.w3schools.com/js/js_string_methods.asp)
 ---
 # boolean
 
@@ -163,42 +163,135 @@ scripts compartilham um escopo global; isso muda um pouco de
 figura com ES6... e módulos.
 
 ---
-# object
+# operador `typeof`
 
-- em JS, qualquer valor que não seja um primitivo é um objeto
+- é um operador da linguagem
 
-- objetos são **coleções de propriedades**
+- produz uma string indicando o “_tipo_” do operando
 
-- cada propriedade consiste em um _nome_ e um _valor_
+- valores produzidos:
 
-   - cada _nome_ é uma _string_
+   - `'number'`
+   - `'string'`
+   - `'boolean'`
+   - `'undefined'`
+   - `'object'`
+   - <span style="color: red;"><strike>`'null'`</strike></span>
+   - `'undefined'`
+   - <span style="color: blue;">`'function'`</span>
 
-   - e cada _valor_ é qualquer valor, incluindo objetos
+- atenção: tem **alta precedência**, o que pode causar confusão
+---
+### exemplos: typeof
+```javascript
+typeof 'a'      // 'string'
+typeof 2        // 'number'
+typeof 2 + 2    // 'number2' (!!)
+typeof (2 + 2)  // 'number'
+typeof 2 == 2   // 'false' (?!)
+typeof (2 == 2) // 'boolean'
+```
 
-- objetos podem ser ligados a outros por **herança prototipal**
+--
+count: false
+```javascript
+typeof (true && false) // 'boolean'
+typeof (true && false && 5) // 'boolean'
+typeof (true && 5 && false) // 'number'
+typeof 2 && 2   // 2 (?!)
+typeof (2 && 2) // 'number'
+```
 
-   - pode ser melhor entendida como _delegação_
-
-- diferente de outras LPs, JS tem **literais pra objetos**
-
-- todos os objetos têm um único tipo: `object`
+--
+count: false
+```javascript
+typeof null // 'object'
+typeof { a: 10 } // 'object'
+typeof new Number(231) // 'object'
+typeof Number(231) // 'number'
+typeof [1, 2, 3] // 'number'
+```
+--
+count: false
+```javascript
+typeof dobro = x => x * 2 // 'function'
+const triplo = function (x) { return 3 * x; }
+typeof triplo // 'function'
+```
 
 ---
-# exemplo de literal de um objeto simples
+class: center, middle
+# Tipos de Dados em JavaScript
+
+## Parte 2: Objetos
+
+---
+# object
+
+- em JS, qualquer valor não primitivo é um objeto (**`object`**)
+
+- objetos JS são **coleções de propriedades**
+
+- cada propriedade é um par &langle;_nome_, _valor_&rangle;
+
+   - _nomes_ são primitivos `string`
+
+   - e _valores_ são qualquer valor, incluindo objetos
+
+--
+count: false
+- diferente de outras LPs, JS tem **literais para objetos** 👍👍👍
+
+- uma _feature_ importante:  **herança prototipal**
+
+   - todo objeto “_herda_” propriedades de outro (seu protótipo)
+
+   - acho melhor interpretar _herança_ em JS como _delegação_
+
+   - mas, veremos isso mais adiante no curso...
+
+---
+### exemplos: literais de objetos
 
 ```javascript
+const data = {
+    dia: 31,
+    mes: "agosto",
+    ano: 1919
+}
+```
+
+--
+count: false
+```javascript
 const jackson = {
-   nome: 'josé gomes filho',
-   nascimento: {
-      dia: 31,
-      mes: 7,
-      ano: 1919
-   }
+    nome: 'josé gomes filho',
+    nascimento: {
+        dia: 31,
+        mes: "agosto",
+        ano: 1919
+    }
+}
+```
+
+--
+count: false
+```javascript
+const abp = {
+    valor: 45
+    esq: { valor: 16 },
+    dir: {
+        valor: 67,
+        esq: { valor: 51 }
+        dir: { valor: 70 }
+    }
 }
 ```
 
 ---
-# objetos nativos (ou _built-in_)
+# objetos nativos ou _built-in_
+
+### primitivos X objetos
 
 - pra cada tipo primitivo, um objeto associado
 
@@ -209,23 +302,155 @@ const jackson = {
 - os objetos acima podem ser usados como:
 
    - funções de casting
-   - ou como _construtores_
-
-- dois outros objetos nativos merecem destaque
-
-   - **`Array`**: objeto que “simula” arrays e listas
-   - **`Function`**: objeto especial que pode ser “executado”
-   - tão importantes que têm léxico, sintaxe e semântica próprias
+   - _construtores_ via operador `new` (evite!)
+   - _construtores_ via autoboxing (ok, você não precisa fazer nada)
 
 ---
-# exemplo de literal de um outro objeto
+### exemplos: primitivos X objetos
+
+```javascript
+const a = String('exemplo');    // primitivo string
+const b = new String('exemplo') // objeto String (evite!)
+a.length  // 7
+b.length  // 7
+typeof a  // 'string'
+typeof b  // 'object'
+```
+
+--
+count: false
+```javascript
+const a = Number('451');    // primitivo number
+const b = new Number(451);  // objeto Number (evite!)
+a.toFixed(2);  // '451.00'
+b.toFixed(2);  // '451.00'
+typeof a;      // 'number'
+typeof b;      // 'object'
+```
+
+--
+count: false
+```javascript
+"exemplo".length;   // 7
+451.toFixed(2)    // SyntaxError (!)
+451..toFixed(2)   // '451.00' (!!)
+```
+
+---
+# objetos nativos ou _built-in_
+
+### dois objetos especiais: Array e Function
+
+- **`Array`**: objeto que “simula” arrays e listas
+
+- **`Function`**: objeto especial que pode ser “executado”
+
+--
+count: false
+
+São tão importantes que têm léxico, sintaxe e semântica
+próprias...
+
+---
+# Arrays
+
+```javascript
+// objeto Array via literal (ok)
+const a = [];  // array vazio
+const b = [1, 2, 3];  // [ 1, 2, 3 ]
+a.length // 0
+b.length // 3
+
+a.push(4) // a passa a ser [ 1, 2, 3, 4 ]
+a.pop() // 4
+a // [ 1, 2, 3 ]
+a.join('') // '123'
+
+```
+--
+count: false
+```javascript
+// objeto Array via construtor (não use!)
+// obs: com ou sem new dá no mesmo
+const b = new Array(1, 2, 3) // [ 1, 2, 3 ]
+const d = Array(1, 2, 3)  // [ 1, 2, 3 ]
+const c = new Array(3)  // [ <3 empty items> ]
+const e = Array(3)  // [ <3 empty items> ]
+
+e[1] = 10;
+console.log(e)    // [empty × 1, 10, empty × 1] (!)
+console.log(e[0]) // undefined (!)
+```
+
+Use `Array.from()` pra produzir Arrays a partir de objetos (ES6).
+
+---
+# Functions 👏👏👏
+
+- o melhor construto de JavaScript
+
+- functions JS são _first-class_ 'objects' ⇒
+
+   - são valores como outros quaisquer da linguagem
+   - podem ser ligados a variáveis
+   - podem ser ligados a parâmetros
+   - podem ser o resultado de uma expressão 
+   - podem ser o valor calculado/retornado por funções (!)
+
+- e, obviamente, são executáveis
+
+--
+count: false
+- functions JS são mais fortemente inspiradas na matemática
+
+   - base para suportar programação no estilo funcional
+
+   - mas, veremos isto mais adiante no curso
+
+---
+### exemplos: functions
+
+```javascript
+// sintaxe baseada em new (Não use!!!)
+const f = new Function('x', "{ return x * 2; }");
+const g = new Function('x', "{ return x + 1; }");
+
+// invocação de funções
+f(10)   // 20
+g(10)   // 11
+f(g(3)) // 8
+g(f(3)) // 7
+```
+
+--
+count: false
+```javascript
+// definições de funções (sintaxe "arrow" de ES6)
+const f =    x => x * 2;
+const g =    x => x + 1;
+```
+
+--
+count: false
+```javascript
+// sintaxe completa
+const f = function(x) {
+    return x * 2;
+}
+const g = function(x) {
+    return x + 1;
+}
+```
+
+---
+### exemplo: objetos com arrays e functions
 
 ```javascript
 const jackson = {
    nome: 'josé gomes filho',
    nascimento: {
       dia: 31,
-      mes: 7,
+      mes: "agosto",
       ano: 1919
    },
    instrumentos: ['pandeiro', 'bateria', 'voz'],
@@ -237,33 +462,16 @@ const jackson = {
 
 Atente também, para os literais de _Array_ e _Function_.
 
+--
+count: false
 **Quem precisa de classes e de `new` com literais pra
 objetos?!**
----
-# `Array`
-
-- em aparência, semelhantes a listas em python
-
-   - também lembram ArrayLists em Java
-   - internamente, contudo, são bem diferentes
-
-- arrays JS são objetos simples com...
-
-   - sintaxe própria (similar à de python)
-   - índices e valores simulados via properties
-   - `typeof` resulta em `object`
-
-```javascript
-const a = ['a', 'b', 'c'];
-console.log(Object.keys(a)); // ["0", "1", "2"]
-
-delete a[1];
-console.log(a); // ["a", empty × 1, "c"]
-
-a.length = 2000;
-console.log(a); // ["a", empty × 1, "c", empty × 1997]
-```
 
 ---
-# `Function`
-
+# leituras indicadas
+- Capítulo 3 do Definitive Guide, 6th edition
+- Capítulos 1 e 2 do You Don't Know JavaScript, Types and Grammar
+- Seção 4.7 do Definitive Guide, 6th edition
+- [Operator precedence](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Operator_Precedence)
+- [JavaScript String Methods](https://www.w3schools.com/js/js_string_methods.asp)
+- [Number Methods](https://www.w3schools.com/js/js_number_methods.asp)

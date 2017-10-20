@@ -12,3 +12,8 @@
    titulo: Tipos de Dados JavaScript
    slides: slides/02.tipos_de_dados
    post: tipos_de_dados
+
+4: 
+   titulo: Coerção em JavaScript
+   slides: slides/03.coercao
+   post: coercao

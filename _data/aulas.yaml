@@ -1,3 +1,7 @@
 - nome: Aula 1
   dia: 2017-10-18
   licoes_ids: [1, 2, 3]
+
+- nome: Aula 2
+  dia: 2017-10-20
+  licoes_ids: [3]
