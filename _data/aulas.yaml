@@ -1,7 +1,15 @@
 - nome: Aula 1
   dia: 2017-10-18
-  licoes_ids: [1, 2, 3]
+  licoes_ids: [0, 1, 2]
 
 - nome: Aula 2
   dia: 2017-10-20
+  licoes_ids: [2, 3]
+
+- nome: Aula 3
+  dia: 2017-10-25
   licoes_ids: [3, 4]
+
+- nome: Aula 4
+  dia: 2017-11-01
+  licoes_ids: [4, 5, 6, 7]

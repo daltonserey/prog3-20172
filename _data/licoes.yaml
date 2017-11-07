@@ -1,19 +1,39 @@
-1: 
+0: 
    titulo: Apresentação
    slides: slides/00.apresentacao
    post: apresentacao
 
-2: 
+1: 
    titulo: Brevíssimo Histórico de JavaScript
    slides: slides/01.historico
    post: historico
 
-3: 
+2: 
    titulo: Tipos de Dados JavaScript
    slides: slides/02.tipos_de_dados
    post: tipos_de_dados
 
-4: 
+3: 
    titulo: Coerção em JavaScript
    slides: slides/03.coercao
    post: coercao
+
+4: 
+   titulo: Funções JavaScript
+   slides: slides/04.funcoes_javascript
+   post: funcoes_javascript
+
+5: 
+   titulo: Funções Puras
+   slides: slides/05.funcoes_puras
+   post: funcoes_puras
+
+6: 
+   titulo: Recursividade
+   slides: slides/06.recursividade
+   post: recursividade
+
+7: 
+   titulo: Funções de alta ordem
+   slides: slides/07.funcoes_de_alta_ordem
+   post: funcoes_de_alta_ordem
