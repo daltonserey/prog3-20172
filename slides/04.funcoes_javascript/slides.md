@@ -159,7 +159,7 @@ console.log(triplica(25)); // 75
 
    - implica que você está definindo uma constante
 
-- se você precisar _mutar_ o valor, opter por `let`
+- se você precisar “_mutar_” o valor, opter por `let`
 
    - `let` define uma variável em escopo de bloco
 
@@ -251,7 +251,29 @@ console.log(nums); // [ 2, 1, 1 ]
 - permite não poluir o global (antes de ES6)
 
 ---
-# lições aprendidas
+# lições importantes 1
+
+1. funções são a única forma de “empacotar” código e algoritmos
+em JavaScript;
+
+2. JavaScript tem sintaxe para declarar funções (comando) e para
+escrever expressões literais de funções; variações da sintaxe de
+expressões permitem simplificar a escrita;
+
+3. funções são “cidadãs de primeira classe”; são valores como
+outros quaisquer e podem ser usados como tal (podem ser
+atribuídos, armazenados, passados como argumentos, retornados por
+outras funções, etc); são objetos, mas `typeof` retorna
+`'function'`;
+
+4. JavaScript delimita escopo por blocos e por função; `const`
+define constantes, `let` define variáveis de bloco e `var`
+variáveis de função (sofrem _hoisting_); use nesta ordem de
+preferência;
+
+5. JavaScript usa escopo léxico; logo, suporta _closures_:
+funções que _aprisionam_ variáveis definidas em escopos externos;
+_closures_ são extremamente importantes e úteis em FP;
 
 ---
 # leituras indicadas
