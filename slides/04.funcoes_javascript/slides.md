@@ -251,7 +251,7 @@ console.log(nums); // [ 2, 1, 1 ]
 - permite não poluir o global (antes de ES6)
 
 ---
-# lições importantes 1
+# lições importantes
 
 1. funções são a única forma de “empacotar” código e algoritmos
 em JavaScript;
