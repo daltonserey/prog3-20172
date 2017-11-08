@@ -139,6 +139,7 @@ count: false
 
 --
 count: false
+
 - podem ser puras ou não
 
    - podem ser criadas para computar valores 👍 

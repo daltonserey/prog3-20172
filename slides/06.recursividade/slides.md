@@ -7,25 +7,30 @@ class: center, middle
 
 - consiste em especificar um conceito com base nele próprio
 
-- é essencialmente a forma _funcional_ de repetição
+- é a forma funcional ou matemática de **repetição**
 
-- intrinsecamente relacionada a _indução matemática_
+- é intrinsecamente relacionada à _indução matemática_
 
+   - importante ferramenta de raciocínio matemático
    - recursividade ⇒ suporte a raciocínio indutivo
-
-   - uma das principais ferramentas de raciocínio matemático
-
-   - aplicável para definições e composições de funções
 
 .right[<img src="drawing_hands.jpg" width="40%"><img>]
 ---
 # funções recursivas
 
-- devem ser expressas como aplicação da função em casos “menores”
+- ideia: especificar funções usando recursividade
 
-- como toda “repetição”, recursividade requer _critérios de parada_
+- consiste em especificar uma função em termos dela própria
 
-- os casos base (critérios de parada) devem evitar aplicações infinitas
+   - as aplicações recursivas são sempre em casos “_menores_”
+
+- como toda forma de “repetição”, requer _critérios de parada_
+
+   - os critérios de parada são conhecidos por _casos base_
+   - são eles que evitam aplicações infinitas da função
+
+---
+# fibonacci
 
 <div style="font-size: 120%;">
 <script type="math/tex; mode=display">

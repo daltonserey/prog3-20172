@@ -120,7 +120,7 @@ como parâmetro
 
 ```javascript
 const v = [4, 11, 8, 6, 7, 10, 9, 6];
-v.filter(e => e % 2 === 1); // [11, 7]
+v.filter(e => e % 2 === 1); // [11, 7, 9]
 ```
 ---
 # exercícios
