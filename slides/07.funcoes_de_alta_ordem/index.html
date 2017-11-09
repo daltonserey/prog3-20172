@@ -15,12 +15,17 @@
       }
       .remark-code, .remark-inline-code { font-family: 'Ubuntu Mono'; }
     </style>
-    <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+    <script type="text/x-mathjax-config"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?delayStartupUntil=configured&config=TeX-MML-AM_HTMLorMML"></script>
+    <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
   </head>
   <body>
-    <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
     <script>
       var slideshow = remark.create({sourceUrl: 'slides.md'});
+      MathJax.Hub.Config({
+        "tex2jax": { inlineMath: [['$','$'], ['\\(','\\)']], skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'] }
+      });
+      MathJax.Hub.Configured();
     </script>
   </body>
 </html>
