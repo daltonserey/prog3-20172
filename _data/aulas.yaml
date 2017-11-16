@@ -12,4 +12,12 @@
 
 - nome: Aula 4
   dia: 2017-11-01
-  licoes_ids: [5, 6, 7]
+  licoes_ids: [5, 6]
+
+- nome: Aula 5
+  dia: 2017-11-08
+  licoes_ids: [7]
+
+- nome: Aula 6
+  dia: 2017-11-10
+  licoes_ids: [7, 8]

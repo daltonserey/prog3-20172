@@ -37,3 +37,8 @@
    titulo: Funções de alta ordem
    slides: slides/07.funcoes_de_alta_ordem
    post: funcoes_de_alta_ordem
+
+8: 
+   titulo: Protótipos
+   slides: slides/08.prototypes
+   post: prototypes
