@@ -153,7 +153,7 @@ const a = {x: 10, y = "exemplo"};
 const b = {}, c = {}, d = {};
 b.__proto__ = a;
 c.__proto__ = b;
-d.__proto__ = d;
+d.__proto__ = a;
 b.x;           // 10 (b não tem x: valor vindo de a)
 c.x;           // 10 (c não tem x: valor vindo de a, via b)
 d.x;           // 10 (d não tem x: valor vindo de a)
