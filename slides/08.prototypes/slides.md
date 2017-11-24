@@ -231,7 +231,7 @@ a.x; // 10
 b.x; // 10
 
 a.hasOwnProperty('x'); // true
-a.hasOwnProperty('x'); // false
+b.hasOwnProperty('x'); // false
 ```
 
 ---
