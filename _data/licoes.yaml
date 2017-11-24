@@ -42,3 +42,8 @@
    titulo: Protótipos
    slides: slides/08.prototypes
    post: prototypes
+
+9: 
+   titulo: Invocação de Funções
+   slides: slides/09.invocacao_de_funcoes
+   post: invocacao_de_funcoes

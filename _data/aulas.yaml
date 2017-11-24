@@ -21,3 +21,11 @@
 - nome: Aula 6
   dia: 2017-11-10
   licoes_ids: [7, 8]
+
+- nome: Aula 7
+  dia: 2017-11-17
+  licoes_ids: [8, 9]
+
+- nome: Aula 8
+  dia: 2017-11-22
+  licoes_ids: [9]
