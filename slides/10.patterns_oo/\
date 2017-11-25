@@ -1,0 +1,295 @@
+class: center, middle
+# Números Racionais
+### ©2017 Dalton Serey, Programação 3, UFCG
+.center[![Right-aligned image](https://i.stack.imgur.com/Mmww2.png)]
+---
+# número racional
+
+qualquer número que pode ser expresso na forma
+
+<script type="math/tex; mode=display">
+  \frac{p}{q}, \text{ em que } p, q \in \mathbb{Z} \text { e } q \neq 0
+</script>
+
+---
+# operações: igualdade
+
+igualdade
+
+<script type="math/tex; mode=display">
+  \begin{aligned}
+  & \frac{p}{q} = \frac{r}{s} && \text{ se e somente se } && ps = qr
+  \end{aligned}
+</script>
+
+---
+# operações: simplificação (ou redução)
+
+- se $gcd(p, q)$ é i gual a 1, dizemos que $p/q$ é _irredutível_
+
+   - e que $p / q$ é a forma simplificada/reduzida do número
+
+- se $gcd(p, q) > 1$, dizemos que $p/q$ é _redutível_
+
+   - e que a forma simplificada/reduzida do número é dada por
+
+<script type="math/tex; mode=display">
+  \begin{aligned}
+  & \frac{p \div d}{q \div d} && \text{ onde $d = gcd(p, q)$}
+  \end{aligned}
+</script>
+
+
+---
+# operações: soma e subtração
+
+<br>
+
+<script type="math/tex; mode=display">
+  \frac{p}{q} + \frac{r}{s} = \frac{ps + qr}{qs} 
+</script>
+
+<br>
+
+<script type="math/tex; mode=display">
+  \frac{p}{q} - \frac{r}{s} = \frac{ps - qr}{qs} 
+</script>
+
+---
+# operações: produto e divisão
+
+<br>
+
+<script type="math/tex; mode=display">
+  \frac{p}{q} \times \frac{r}{s} = \frac{pr}{qs}
+</script>
+
+<br>
+
+<script type="math/tex; mode=display">
+  \begin{aligned}
+  & \frac{p}{q} \div \frac{r}{s} = \frac{ps}{qr} && \text{ com $r \neq 0$}
+  \end{aligned}
+</script>
+
+---
+class: center, middle
+#implementação
+<span style="font-size: 300px">1</span>
+#funcional pura
+---
+# representação de racionais
+
+podemos representar racionais como objetos em JavaScript
+
+```
+const r1 = { num: 1, den: 2 };
+const r2 = { num: 1, den: 4 };
+const r3 = { num: 2, den: 3 };
+const r4 = { num: 3, den: 5 };
+```
+
+<br>
+--
+count: false
+dessa forma, contudo, expomos detalhes de implementação para o usuário ☹ 
+
+---
+# representação abstrata de racionais
+
+para representar de forma abstrata, usamos uma função construtora
+
+```
+function racional(num, den) {
+    return {num: num, den: den};
+}
+```
+
+--
+count: false
+<br>
+embora pareça fazer o mesmo, permite expressar racionais assim
+```
+const r1 = racional(1, 2);
+const r2 = racional(1, 4);
+const r3 = racional(2, 3);
+const r4 = racional(3, 5);
+```
+
+<br>
+assim, o usuário é exposto a detalhes da implementação 👍 
+
+---
+# um pouco de robustez
+
+vamos garantir que usos “abusivos” sejam corrigidos
+
+```
+function racional(num, den) {
+    return { num: Math.truc(num), den: Math.trunc(den) };
+}
+```
+
+--
+count: false
+agora o usuário não consegue criar racionais impróprios 
+```
+const r1 = racional(1, 2);
+const meio = racional(1.5, 2.2); # igual a r1
+```
+
+.footnote[mais adiante, veremos como tornar _properties_ imutáveis]
+---
+# igualdade
+
+```
+function iguais(r1, r2) {
+    return r1.num * r2.den == r1.den * r2.num;
+}
+```
+
+<br>
+agora podemos fazer
+```
+const r1 = racional(1, 2);
+const r2 = racional(1, 3);
+
+iguais(r1, r2);                          // false
+iguais(r1, racional(3, 6));              // true
+iguais(r2, racional(2, 6));              // true
+iguais(racional(2, 5), racional(6, 15)); // true
+```
+
+---
+# simplificação
+
+```
+function simpl(r) {
+    const gcd = (a, b) => b === 0 ? a : gcd(b, a % b);
+
+    const dc = gcd(r.num, r.den);
+    return racional(r.num / dc, r.den / dc);
+}
+```
+
+<br>
+agora podemos escrever
+```
+const r = racional(4, 8); // { num: 4, den: 8 }
+const s = simpl(r);    // { num: 1, den: 2 }
+iguais(r, s);             // true
+```
+
+---
+# operações aritméticas
+
+```
+function soma(r1, r2) {
+    const n = r1.num * r2.den + r2.num * r1.den;
+    const d = r1.den * r2.den;
+    return simpl(racional(n, d));
+}
+
+function sub(r1, r2) {
+    const n = r1.num * r2.den - r2.num * r1.den;
+    const d = r1.den * r2.den;
+    return simpl(racional(n, d));
+}
+
+function mult(r1, r2) {
+    const n = r1.num * r2.num;
+    const d = r1.den * r2.den;
+    return simpl(racional(n, d));
+}
+
+function div(r1, r2) {
+    const n = r1.num * r2.den;
+    const d = r1.den * r2.num;
+    return simpl(racional(n, d));
+}
+```
+
+---
+# toString()
+
+é sempre bom dispor de uma forma _string_ apropriada
+```
+function toString(r) {
+  return `${r.num}/${r.den}`;
+}
+```
+
+assim
+```
+const r1 = simpl(racional(5, 10));
+toString(r1);                        // '1/2'
+console.log(`r1 = ${toString(r1)}`); // r1 = 1/2
+```
+
+---
+# aplicação
+
+o que a expressão abaixo calcula?
+```
+// x = ((r1 + r2) x (r3 x r4)) ÷ (r3 x (r1 - r4))
+const x = div(mult(soma(r1, r2), mult(r3, r4)), mult(r3, sub(r1, r4)));
+```
+
+como estender a definição para soma de vários
+```
+// x = r1 + r2 + r3 + r4 + r5
+const x1 = soma(soma(soma(soma(r1, r2), r3), r4), r5);
+const x2 = soma(r1, soma(r2, soma(r3, soma(r4, r5))));
+```
+---
+# código final
+
+https://repl.it/@daltonserey/numeros-racionais-funcional-1
+
+---
+# qualidades da solução 👍 
+
+1. é fácil de entender
+
+   - por serem funções puras, todas as funções sempre que
+     invocadas produzem novos valores, sem depender ou alterar de
+     dados já presentes na memória; a operação de todas as
+     funções depende apenas dos parâmetros e do código;
+
+2. pode ser usada parcialmente
+
+   - algumas das funções dependem de outras (por exemplo, `soma`
+     depende de `simpl` e de `racional`); contudo, não há
+     dependências entre todas elas; logo, em contextos em que
+     apenas algumas sejam necessárias, pode-se excluir as que não
+     forem necessárias;
+
+3. usa espaço de funções forma eficiente
+
+   - cada função só é criada uma única vez, sem importar a
+     quantidade de números racionais que seja necessário
+     manipular;
+
+---
+# defeitos da solução 👎
+
+1. não usa espaço de números forma eficiente 🤔
+
+   - por serem funções puras, sempre que uma função é que
+     invocadas produzem novos valores, sem depender ou alterar de
+     dados já presentes na memória; a operação de todas as
+     funções depende apenas dos parâmetros e do código;
+
+2. pode ser usada parcialmente
+
+   - algumas das funções dependem de outras (por exemplo, `soma`
+     depende de `simpl` e de `racional`); contudo, não há
+     dependências entre todas elas; logo, em contextos em que
+     apenas algumas sejam necessárias, pode-se excluir as que não
+     forem necessárias;
+
+3. usa espaço de forma eficiente
+
+   - cada função só é criada uma única vez, sem importar a
+     quantidade de números racionais que seja necessário
+     manipular;
