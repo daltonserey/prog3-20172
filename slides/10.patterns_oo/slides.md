@@ -747,3 +747,19 @@ https://repl.it/@daltonserey/racionaisoo3js
    - o módulo exerce as funções que cabem a um módulo
       - container do código provedor
       - controle e configuração (provê o protótipo via _closures_)
+
+---
+# exercício
+
+Implemente em JavaScript o conceito de polinômios de uma
+variável ao estilo do que fizemos nestes slides.
+
+1. Construa uma versão puramente funcional.
+
+2. Em seguida, produza uma versão OO ingênua.
+
+3. Em seguida, crie uma versão OO que use um protótipo criado
+diretamente pelo construtor.
+
+4. Finalmente, crie um módulo OO `polinomios` que permita
+importar de forma discricionária o construtor.

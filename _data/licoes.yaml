@@ -47,3 +47,8 @@
    titulo: Invocação de Funções
    slides: slides/09.invocacao_de_funcoes
    post: invocacao_de_funcoes
+
+10: 
+   titulo: Patterns OO em JavaScript
+   slides: slides/10.patterns_oo
+   post: patterns_oo

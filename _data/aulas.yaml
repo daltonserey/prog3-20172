@@ -28,4 +28,8 @@
 
 - nome: Aula 8
   dia: 2017-11-22
-  licoes_ids: [9]
+  licoes_ids: [9, 10]
+
+- nome: Aula 9
+  dia: 2017-11-24
+  licoes_ids: [9, 10]
