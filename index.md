@@ -10,6 +10,5 @@
 
 {% for licao in curso.licoes %}
 <h2>{{ licao.titulo }}</h2>
-  <li>slides {{licao.slides }} 
-  </ul>
+  <p>slides {{licao.slides }}</p>
 {% endfor %}
