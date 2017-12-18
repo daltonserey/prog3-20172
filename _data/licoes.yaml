@@ -1,64 +1,51 @@
-0: 
-   titulo: Apresentação
-   slides: slides/00.apresentacao
-   post: apresentacao
+- titulo: Apresentação
+  slides: slides/00.apresentacao
+  post: apresentacao
 
-1: 
-   titulo: Brevíssimo Histórico de JavaScript
-   slides: slides/01.historico
-   post: historico
+- titulo: Brevíssimo Histórico de JavaScript
+  slides: slides/01.historico
+  post: historico
 
-2: 
-   titulo: Tipos de Dados JavaScript
-   slides: slides/02.tipos_de_dados
-   post: tipos_de_dados
+- titulo: Tipos de Dados JavaScript
+  slides: slides/02.tipos_de_dados
+  post: tipos_de_dados
 
-3: 
-   titulo: Coerção em JavaScript
-   slides: slides/03.coercao
-   post: coercao
+- titulo: Coerção em JavaScript
+  slides: slides/03.coercao
+  post: coercao
 
-4: 
-   titulo: Funções JavaScript
-   slides: slides/04.funcoes_javascript
-   post: funcoes_javascript
+- titulo: Funções JavaScript
+  slides: slides/04.funcoes_javascript
+  post: funcoes_javascript
 
-5: 
-   titulo: Funções Puras
-   slides: slides/05.funcoes_puras
-   post: funcoes_puras
+- titulo: Funções Puras
+  slides: slides/05.funcoes_puras
+  post: funcoes_puras
 
-6: 
-   titulo: Recursividade
-   slides: slides/06.recursividade
-   post: recursividade
+- titulo: Recursividade
+  slides: slides/06.recursividade
+  post: recursividade
 
-7: 
-   titulo: Funções de alta ordem
-   slides: slides/07.funcoes_de_alta_ordem
-   post: funcoes_de_alta_ordem
+- titulo: Funções de alta ordem
+  slides: slides/07.funcoes_de_alta_ordem
+  post: funcoes_de_alta_ordem
 
-8: 
-   titulo: Protótipos
-   slides: slides/08.prototypes
-   post: prototypes
+- titulo: Protótipos
+  slides: slides/08.prototypes
+  post: prototypes
 
-9: 
-   titulo: Invocação de Funções
-   slides: slides/09.invocacao_de_funcoes
-   post: invocacao_de_funcoes
+- titulo: Invocação de Funções
+  slides: slides/09.invocacao_de_funcoes
+  post: invocacao_de_funcoes
 
-10: 
-   titulo: Patterns OO em JavaScript
-   slides: slides/10.patterns_oo
-   post: patterns_oo
+- titulo: Patterns OO em JavaScript
+  slides: slides/10.patterns_oo
+  post: patterns_oo
 
-11: 
-   titulo: Monóides e assemelhados
-   slides: slides/11.monoides_e_cia
-   post: monoides_e_cia
+- titulo: Monóides e assemelhados
+  slides: slides/11.monoides_e_cia
+  post: monoides_e_cia
 
-12: 
-   titulo: Programação Assíncrona
-   slides: slides/12.asynchronous_javascript
-   post: asynchronous_javascript
+- titulo: Programação Assíncrona
+  slides: slides/12.asynchronous_javascript
+  post: asynchronous_javascript
