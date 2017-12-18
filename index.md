@@ -9,6 +9,5 @@
 {% assign curso = site.data %}
 
 {% for licao in curso.licoes %}
-<h2>{{ licao.titulo }}</h2>
-  <p><a href="{{ licao.slides }}">slides</a></p>
+<h3><a href="{{ licao.slides }}">{{ licao.titulo }}</a></h3>
 {% endfor %}
