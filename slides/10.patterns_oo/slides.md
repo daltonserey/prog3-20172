@@ -754,7 +754,8 @@ https://repl.it/@daltonserey/racionaisoo3js
 Implemente em JavaScript o conceito de polinômios de uma
 variável ao estilo do que fizemos nestes slides.
 
-1. Construa uma versão puramente funcional.
+1. Construa uma versão puramente funcional [(veja os
+testes)](http://repl.it/@daltonserey/specpolinomiojs).
 
 2. Em seguida, produza uma versão OO ingênua.
 
