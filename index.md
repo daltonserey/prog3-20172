@@ -8,11 +8,8 @@
 
 {% assign curso = site.data %}
 
-{% for aula in curso.aulas %}
-<h2>{{ aula.nome }} <small>({{ aula.dia }})</small></h2>
-  <ul>
-  {% for id in aula.licoes_ids %}
-  <li>{{curso.licoes[id].titulo}} {% if curso.licoes[id].slides %} (<a href="{{curso.licoes[id].slides}}" target="_blank">slides</a>){% endif %}</li>
-  {% endfor %}
+{% for licao in curso.licoes %}
+<h2>{{ licao.titulo }}</h2>
+  <li>slides {{licao.slides }} 
   </ul>
 {% endfor %}

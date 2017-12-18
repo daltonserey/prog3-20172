@@ -52,3 +52,13 @@
    titulo: Patterns OO em JavaScript
    slides: slides/10.patterns_oo
    post: patterns_oo
+
+11: 
+   titulo: Monóides e assemelhados
+   slides: slides/11.monoides_e_cia
+   post: monoides_e_cia
+
+12: 
+   titulo: Programação Assíncrona
+   slides: slides/12.asynchronous_javascript
+   post: asynchronous_javascript
