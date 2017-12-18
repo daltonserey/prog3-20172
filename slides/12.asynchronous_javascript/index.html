@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Title</title>
+    <meta charset="utf-8">
+    <style>
+      @import url(https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz);
+      @import url(https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic);
+      @import url(https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700,400italic);
+
+      body { font-family: 'Droid Serif'; }
+      h1, h2, h3 {
+        font-family: 'Yanone Kaffeesatz';
+        font-weight: normal;
+      }
+      .remark-code, .remark-inline-code { font-family: 'Ubuntu Mono'; }
+      .left-column {float: left; width: 80%; height: 92%;}
+      .right-column {float: right; width: 20%; height: 92%;}
+      .left-column-70 {float: left; width: 70%; height: 92%;}
+      .right-column-30 {float: right; width: 30%; height: 92%;}
+      .left-column-60 {float: left; width: 60%; height: 92%;}
+      .right-column-40 {float: right; width: 40%; height: 92%;}
+      .left-column-40 {float: left; width: 40%; height: 92%;}
+      .right-column-60 {float: right; width: 60%; height: 92%;}
+      .left-column-50 {float: left; width: 50%; height: 92%;}
+      .right-column-50 {float: right; width: 50%; height: 92%;}
+      .footnote {
+        position: absolute;
+        font-size: 80%;
+        bottom: 3em;
+      }
+      .red { color: #fa0000; }
+      .ref {
+        color: #fa0000;
+        font-size: 50%;
+        vertical-align: super;
+      }
+    </style>
+    <script type="text/x-mathjax-config"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?delayStartupUntil=configured&config=TeX-MML-AM_HTMLorMML"></script>
+    <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+  </head>
+  <body>
+        <!-- highlightSpans: /([^«])«([^«]+?)«/, -->
+    <script>
+      var slideshow = remark.create({
+        sourceUrl: 'slides.md',
+        highlightLanguage: 'javascript',
+        highlightLines: true
+      });
+      MathJax.Hub.Config({
+        "tex2jax": { inlineMath: [['$','$'], ['\\(','\\)']], skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'] }
+      });
+      MathJax.Hub.Configured();
+    </script>
+  </body>
+</html>
